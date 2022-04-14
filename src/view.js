@@ -1,4 +1,7 @@
-export default () => {
+import renderFeeds from './components/feeds.js';
+import renderPosts from './components/posts.js';
+
+export default (i18n) => {
   const watched = (path, value) => {
     const form = document.querySelector('.rss-form');
     const input = form.querySelector('#url-input');
@@ -7,14 +10,17 @@ export default () => {
     console.log('1', path);
     console.log('2', value);
 
-    if (value === 'valid') {
+    if (path === 'feeds') {
       input.classList.remove('is-invalid');
+      renderFeeds(value, i18n);
+    } else if (path === 'posts') {
+      renderPosts(value, i18n);
     } else {
       input.classList.add('is-invalid');
+      feedbackArea.textContent = value;
     }
 
-    feedbackArea.textContent = value;
-    form.after(feedbackArea);
+    form.parentNode.append(feedbackArea);
   };
 
   return watched;
