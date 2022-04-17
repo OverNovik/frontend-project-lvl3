@@ -35,8 +35,7 @@ const app = () => {
 
   const watchedState = onChange(state, view(i18nextInstance));
 
-  const form = document.querySelector('.rss-form');
-  console.log(form);
+  const form = document.querySelector('form');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
