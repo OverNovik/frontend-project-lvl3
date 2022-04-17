@@ -14,6 +14,7 @@ export default (i18n) => {
       input.classList.remove('is-invalid');
       renderFeeds(value, i18n);
     } else if (path === 'posts') {
+      input.classList.remove('is-invalid');
       renderPosts(value, i18n);
     } else {
       input.classList.add('is-invalid');

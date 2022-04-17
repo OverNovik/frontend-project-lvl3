@@ -12,6 +12,7 @@ const app = () => {
       feedback: [],
     },
     feeds: [],
+    requests: [],
     posts: [],
   };
 
@@ -41,8 +42,9 @@ const app = () => {
 
     const formData = new FormData(e.target);
     const urlData = formData.get('url');
+    form.reset();
 
-    yupValid(urlData, i18nextInstance)
+    yupValid(urlData, i18nextInstance, state)
       .then(() => getXml(watchedState, urlData, state))
       .then((data) => console.log(data))
       .then(() => {
@@ -50,7 +52,7 @@ const app = () => {
           watchedState.form.stateForm = 'invalid';
           watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
         } else {
-          state.feeds.push(urlData);
+          state.requests.push(urlData);
           watchedState.form.stateForm = 'valid';
           watchedState.form.feedback = i18nextInstance.t('feedback.valid');
         }
