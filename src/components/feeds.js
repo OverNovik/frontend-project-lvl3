@@ -17,7 +17,6 @@ export default (feeds) => {
     description.classList.add('m-0', 'small', 'text-black-50');
     description.textContent = item.description;
     li.append(title, description);
-    console.log(list);
     list.append(li);
   });
 };

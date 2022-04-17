@@ -46,7 +46,6 @@ const app = () => {
 
     yupValid(urlData, i18nextInstance, state)
       .then(() => getXml(watchedState, urlData, state))
-      .then((data) => console.log(data))
       .then(() => {
         if (state.feeds.includes(urlData)) {
           watchedState.form.stateForm = 'invalid';

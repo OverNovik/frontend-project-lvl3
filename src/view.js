@@ -6,9 +6,6 @@ export default (i18n) => {
     const form = document.querySelector('.rss-form');
     const input = form.querySelector('#url-input');
     const feedbackArea = document.querySelector('.feedback');
-    console.log(feedbackArea);
-    console.log('1', path);
-    console.log('2', value);
 
     if (path === 'feeds') {
       input.classList.remove('is-invalid');

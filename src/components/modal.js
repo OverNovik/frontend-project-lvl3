@@ -4,7 +4,6 @@ export default (post) => {
   const bodyModal = document.querySelector('.modal-body');
   const linkModal = document.querySelector('.full-article');
 
-  console.log(linkModal);
   modal.classList.add('show');
   modal.style.display = 'block';
   modal.style.background = '#cccc';

@@ -25,8 +25,6 @@ export default (posts, i18n) => {
     link.textContent = item.title;
     link.classList.add('fw-bold');
 
-    console.log('Link', link);
-
     const btn = document.createElement('button');
     btn.classList.add('btn', 'btn-outline-primary', 'btn-sm');
     btn.type = 'button';

@@ -3,7 +3,6 @@ import { uniqueId } from 'lodash';
 export default (data) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(data.contents, 'text/xml');
-  console.log(doc);
   const feedId = uniqueId();
   const feedTitle = doc.querySelector('title');
   const feedDesc = doc.querySelector('description');
@@ -21,7 +20,6 @@ export default (data) => {
       postId,
     };
   });
-  console.log('POSTS', posts);
 
   return {
     feedTitle: feedTitle.textContent,
