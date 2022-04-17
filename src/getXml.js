@@ -13,7 +13,10 @@ const getXml = (watchedState, url, state) => {
     })
     .then(() => setTimeout(() => {
       getXml(watchedState, url, state);
-    }, 5000));
+    }, 5000))
+    .catch((error) => {
+      watchedState.form.error = error.message;
+    });
 };
 
 export default getXml;
