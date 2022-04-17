@@ -1,4 +1,4 @@
-import { map } from 'lodash';
+import _ from 'lodash';
 
 export const isUnique = (state, title) => {
   const same = state.feeds.find((feed) => feed.title === title);
@@ -6,7 +6,7 @@ export const isUnique = (state, title) => {
 };
 
 export default (state, watchedState, parseData) => {
-  const postTitles = map(state.posts, 'title');
+  const postTitles = _.map(state.posts, 'title');
   const newPosts = parseData.posts.filter((post) => !postTitles.includes(post.title));
   if (newPosts.length) {
     watchedState.posts = state.posts.concat(newPosts);
