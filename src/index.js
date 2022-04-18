@@ -33,10 +33,11 @@ const app = () => {
     },
   });
 
-  const watchedState = onChange(state, view(i18nextInstance));
-
   window.onload = () => {
     const form = document.querySelector('form');
+    const feedbackArea = document.querySelector('.feedback');
+
+    const watchedState = onChange(state, view(i18nextInstance, feedbackArea));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
