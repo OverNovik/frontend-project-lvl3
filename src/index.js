@@ -35,34 +35,34 @@ const app = () => {
 
   const watchedState = onChange(state, view(i18nextInstance));
 
-  const form = document.querySelector('form');
-  console.log(form);
+  window.onload = () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-  window.onload = form.addEventListener('submit', (e) => {
-    e.preventDefault();
+      const formData = new FormData(e.target);
+      const urlData = formData.get('url');
+      form.reset();
 
-    const formData = new FormData(e.target);
-    const urlData = formData.get('url');
-    form.reset();
-
-    yupValid(urlData, i18nextInstance, state)
-      .then(() => getXml(watchedState, urlData, state))
-      .then(() => {
-        if (state.feeds.includes(urlData)) {
+      yupValid(urlData, i18nextInstance, state)
+        .then(() => getXml(watchedState, urlData, state))
+        .then(() => {
+          if (state.feeds.includes(urlData)) {
+            watchedState.form.stateForm = 'invalid';
+            watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
+          } else {
+            state.requests.push(urlData);
+            watchedState.form.stateForm = 'valid';
+            watchedState.form.feedback = i18nextInstance.t('feedback.valid');
+          }
+        })
+        .catch((error) => {
           watchedState.form.stateForm = 'invalid';
-          watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
-        } else {
-          state.requests.push(urlData);
-          watchedState.form.stateForm = 'valid';
-          watchedState.form.feedback = i18nextInstance.t('feedback.valid');
-        }
-      })
-      .catch((error) => {
-        watchedState.form.stateForm = 'invalid';
-        watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
-        watchedState.form.error = error.message;
-      });
-  });
+          watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
+          watchedState.form.error = error.message;
+        });
+    });
+  };
 };
 
 export default app;
