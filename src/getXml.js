@@ -2,7 +2,7 @@ import axios from 'axios';
 import parser from './parser.js';
 import updateTracking from './updateTracking.js';
 
-const getLink = (url) => `https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`;
+const getLink = (url) => `https://allorigins.hexlet.app/get?url=${url}`;
 
 const getXml = (watchedState, url, state) => {
   axios.get(getLink(url))
