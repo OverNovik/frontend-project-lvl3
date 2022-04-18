@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export const isUnique = (state, title) => {
+const isUnique = (state, title) => {
   const same = state.feeds.find((feed) => feed.title === title);
   return !same;
 };
