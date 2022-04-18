@@ -32,39 +32,37 @@ const app = () => {
       },
     },
   });
+  const form = document.querySelector('form');
+  const input = form.querySelector('#url-input');
+  const feedbackArea = document.querySelector('.feedback');
 
-  window.onload = () => {
-    const form = document.querySelector('form');
-    const input = form.querySelector('#url-input');
-    const feedbackArea = document.querySelector('.feedback');
+  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea));
 
-    const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea));
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      const formData = new FormData(e.target);
-      const urlData = formData.get('url');
-      form.reset();
+    const formData = new FormData(e.target);
+    const urlData = formData.get('url');
+    form.reset();
 
-      yupValid(urlData, i18nextInstance, state)
-        .then(() => getXml(watchedState, urlData, state))
-        .then(() => {
-          if (state.feeds.includes(urlData)) {
-            watchedState.form.stateForm = 'invalid';
-            watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
-          } else {
-            state.requests.push(urlData);
-            watchedState.form.stateForm = 'valid';
-            watchedState.form.feedback = i18nextInstance.t('feedback.valid');
-          }
-        })
-        .catch((error) => {
+    yupValid(urlData, i18nextInstance, state)
+      .then(() => getXml(watchedState, urlData, state))
+      .then(() => {
+        if (state.feeds.includes(urlData)) {
           watchedState.form.stateForm = 'invalid';
-          watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
-          watchedState.form.error = error.message;
-        });
-    });
-  };
+          watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
+        } else {
+          state.requests.push(urlData);
+          watchedState.form.stateForm = 'valid';
+          watchedState.form.feedback = i18nextInstance.t('feedback.valid');
+        }
+      })
+      .catch((error) => {
+        watchedState.form.stateForm = 'invalid';
+        watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
+        watchedState.form.error = error.message;
+      });
+  });
 };
 
 export default app;
