@@ -1,11 +1,8 @@
 import renderFeeds from './components/feeds.js';
 import renderPosts from './components/posts.js';
 
-export default (i18n, feedbackArea) => {
+export default (i18n, form, input, feedbackArea) => {
   const watched = (path, value) => {
-    const form = document.querySelector('.rss-form');
-    const input = form.querySelector('#url-input');
-
     if (path === 'feeds') {
       input.classList.remove('is-invalid');
       feedbackArea.classList.remove('text-danger');
