@@ -4,8 +4,8 @@ import renderContainer from './renderContainer.js';
 export default (posts, i18n) => {
   const el = document.querySelector('.posts');
   el.innerHTML = '';
-  const textTitle = renderContainer('Посты');
-  el.innerHTML = textTitle;
+  const render = renderContainer('Посты');
+  el.innerHTML = render;
   const list = el.querySelector('ul');
 
   posts.forEach((item) => {
