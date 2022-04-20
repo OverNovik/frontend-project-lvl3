@@ -43,6 +43,7 @@ const app = () => {
 
     const formData = new FormData(e.target);
     const urlData = formData.get('url');
+    form.reset();
 
     yupValid(urlData, i18nextInstance, state)
       .then(() => getXml(watchedState, urlData, state))
