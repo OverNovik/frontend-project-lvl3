@@ -28,6 +28,7 @@ const app = () => {
             invalid: 'Ссылка должна быть валидным URL',
             repeat: 'RSS уже существует',
             parserError: 'Ресурс не содержит валидный RSS',
+            networkError: 'Ошибка сети',
           },
         },
       },

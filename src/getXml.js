@@ -14,7 +14,7 @@ const getXml = (watchedState, url, state, i18n) => {
       getXml(watchedState, url, state);
     }, 5000))
     .catch((error) => {
-      watchedState.form.error = error.message;
+      error.message = i18n.t('feedback.networkError');
     });
 };
 
