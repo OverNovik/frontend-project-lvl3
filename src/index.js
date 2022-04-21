@@ -64,6 +64,9 @@ const app = () => {
         if (error.message === i18nextInstance.t('feedback.repeat')) {
           watchedState.form.stateForm = 'repeat';
           watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
+        } else if (error.message === i18nextInstance.t('feedback.networkError')) {
+          watchedState.form.stateForm = 'networkError';
+          watchedState.form.feedback = i18nextInstance.t('feedback.networkError');
         } else {
           watchedState.form.stateForm = 'invalid';
           watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
