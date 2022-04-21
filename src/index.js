@@ -38,7 +38,7 @@ const app = () => {
   const input = form.querySelector('#url-input');
   const feedbackArea = document.querySelector('.feedback');
 
-  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea));
+  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea, state));
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -48,23 +48,28 @@ const app = () => {
     form.reset();
 
     yupValid(urlData, i18nextInstance, state)
-      .then(() => getXml(watchedState, urlData, state, i18nextInstance))
       .then(() => {
         if (state.feeds.includes(urlData)) {
+          throw new Error(i18nextInstance.t('feedback.repeat'));
+        } else {
+          getXml(watchedState, urlData, state, i18nextInstance);
+          state.requests.push(urlData);
+        }
+      })
+      .then(() => {
+        watchedState.form.stateForm = 'valid';
+        watchedState.form.feedback = i18nextInstance.t('feedback.valid');
+      })
+      .catch((error) => {
+        if (error.message === i18nextInstance.t('feedback.repeat')) {
           watchedState.form.stateForm = 'repeat';
           watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
         } else {
-          state.requests.push(urlData);
-          watchedState.form.stateForm = 'valid';
-          watchedState.form.feedback = i18nextInstance.t('feedback.valid');
+          watchedState.form.stateForm = 'invalid';
+          watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
+          watchedState.form.error = error.message;
         }
-      })
-      .catch((error) => {
-        watchedState.form.stateForm = 'invalid';
-        watchedState.form.feedback = i18nextInstance.t('feedback.invalid');
-        watchedState.form.error = error.message;
       });
   });
 };
-
 export default app;
