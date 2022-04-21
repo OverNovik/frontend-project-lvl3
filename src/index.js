@@ -50,7 +50,7 @@ const app = () => {
       .then(() => getXml(watchedState, urlData, state, i18nextInstance))
       .then(() => {
         if (state.feeds.includes(urlData)) {
-          watchedState.form.stateForm = 'invalid';
+          watchedState.form.stateForm = 'repeat';
           watchedState.form.feedback = i18nextInstance.t('feedback.repeat');
         } else {
           state.requests.push(urlData);

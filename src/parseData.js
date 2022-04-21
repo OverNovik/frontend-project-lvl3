@@ -1,7 +1,13 @@
 import _ from 'lodash';
 
-export default (doc) => {
+export default (doc, i18n) => {
   const feedId = _.uniqueId();
+  const parsererror = doc.querySelector('parsererror');
+
+  if (parsererror) {
+    throw new Error(i18n.t('feedback.parserError'));
+  }
+
   const feedTitle = doc.querySelector('title');
   const feedDesc = doc.querySelector('description');
   const feedLink = doc.querySelector('link');
