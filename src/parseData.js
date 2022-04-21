@@ -3,8 +3,6 @@ import _ from 'lodash';
 export default (doc, i18n) => {
   const feedId = _.uniqueId();
   const parsererror = doc.querySelector('parsererror');
-  console.log(parsererror);
-  console.log(i18n.t('feedback.parserError'));
   if (parsererror) {
     throw new Error(i18n.t('feedback.parserError'));
   }

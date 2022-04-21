@@ -38,7 +38,7 @@ const app = () => {
   const input = form.querySelector('#url-input');
   const feedbackArea = document.querySelector('.feedback');
 
-  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea, state));
+  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea));
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -52,8 +52,8 @@ const app = () => {
         if (state.feeds.includes(urlData)) {
           throw new Error(i18nextInstance.t('feedback.repeat'));
         } else {
-          getXml(watchedState, urlData, state, i18nextInstance);
           state.requests.push(urlData);
+          return getXml(watchedState, urlData, state, i18nextInstance);
         }
       })
       .then(() => {

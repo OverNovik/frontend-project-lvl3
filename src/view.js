@@ -1,9 +1,15 @@
 import renderFeeds from './components/feeds.js';
 import renderPosts from './components/posts.js';
 
-export default (i18n, form, input, feedbackArea, state) => {
+export default (i18n, form, input, feedbackArea) => {
   const watched = (path, value) => {
-    console.log('!!!!!!', state);
+    console.log('value', value);
+    console.log('path', path);
+    if (path === 'form.stateForm' && value === 'valid') {
+      input.setAttribute('readonly', 'readonly');
+    } else {
+      input.removeAttribute('readonly');
+    }
     if (path === 'feeds') {
       input.classList.remove('is-invalid');
       feedbackArea.classList.remove('text-danger');
