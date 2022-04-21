@@ -27,6 +27,7 @@ const app = () => {
             valid: 'RSS успешно загружен',
             invalid: 'Ссылка должна быть валидным URL',
             repeat: 'RSS уже существует',
+            parserError: 'Ресурс не содержит валидный RSS',
           },
         },
       },
@@ -46,7 +47,7 @@ const app = () => {
     form.reset();
 
     yupValid(urlData, i18nextInstance, state)
-      .then(() => getXml(watchedState, urlData, state))
+      .then(() => getXml(watchedState, urlData, state, i18nextInstance))
       .then(() => {
         if (state.feeds.includes(urlData)) {
           watchedState.form.stateForm = 'invalid';
