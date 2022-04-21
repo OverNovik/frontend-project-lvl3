@@ -5,11 +5,6 @@ export default (i18n, form, input, feedbackArea) => {
   const watched = (path, value) => {
     console.log('value', value);
     console.log('path', path);
-    if (path === 'form.stateForm' && value === 'valid') {
-      input.setAttribute('readonly', 'readonly');
-    } else {
-      input.removeAttribute('readonly');
-    }
     if (path === 'feeds') {
       input.classList.remove('is-invalid');
       feedbackArea.classList.remove('text-danger');
@@ -28,6 +23,12 @@ export default (i18n, form, input, feedbackArea) => {
     }
 
     form.parentNode.append(feedbackArea);
+
+    if (path === 'form.stateForm' && value === 'valid') {
+      input.setAttribute('readonly', 'readonly');
+    } else {
+      input.removeAttribute('readonly');
+    }
   };
 
   return watched;
