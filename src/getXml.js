@@ -24,7 +24,7 @@ const getXml = (watchedState, url, state, i18n) => {
     //   watchedState.form.feedback = i18n.t('feedback.valid');
     // })
     .catch((error) => {
-      watchedState.form.feedback = error.message;
+      watchedState.form.feedback = i18n.t(error.message);
       console.log('?????', error);
     });
 };
