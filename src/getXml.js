@@ -24,7 +24,11 @@ const getXml = (watchedState, url, state, i18n) => {
     //   watchedState.form.feedback = i18n.t('feedback.valid');
     // })
     .catch((error) => {
-      watchedState.form.feedback = i18n.t(error.message);
+      if (error.message === 'Network Error') {
+        watchedState.form.feedback = i18n.t('feedback.networkError');
+      } else {
+        watchedState.form.feedback = error.message;
+      }
       console.log('?????', error);
     });
 };
