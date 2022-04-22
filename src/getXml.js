@@ -16,7 +16,6 @@ const getXml = (watchedState, url, state, i18n) => {
     .catch((error) => {
       if (error.message === 'Network Error') {
         watchedState.form.feedback = i18n.t('feedback.networkError');
-        return;
       }
       watchedState.form.feedback = error.message;
       watchedState.form.status = 'success';
