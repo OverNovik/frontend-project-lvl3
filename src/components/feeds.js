@@ -3,8 +3,8 @@ import renderContainer from './renderContainer.js';
 export default (feeds) => {
   const el = document.querySelector('.feeds');
   el.innerHTML = '';
-  const render = renderContainer('Фиды');
-  el.innerHTML = render;
+  const utils = renderContainer('Фиды');
+  el.innerHTML = utils;
   const list = el.querySelector('ul');
 
   feeds.forEach((item) => {

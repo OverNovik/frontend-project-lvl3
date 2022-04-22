@@ -4,8 +4,6 @@ import renderPosts from './components/posts.js';
 export default (i18n, form, input, feedbackArea) => {
   const btn = document.querySelector('.btn-lg');
   const watched = (path, value) => {
-    console.log('value', value);
-    console.log('path', path);
     if (path === 'feeds') {
       input.classList.remove('is-invalid');
       feedbackArea.classList.remove('text-danger');
