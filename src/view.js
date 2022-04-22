@@ -24,7 +24,7 @@ export default (i18n, form, input, feedbackArea) => {
       input.classList.add('is-invalid');
       feedbackArea.classList.add('text-danger');
       feedbackArea.textContent = i18n.t('feedback.parserError');
-    } else if (value === 'networkError') {
+    } else if (value === 'Ошибка сети') {
       feedbackArea.classList.remove('text-success');
       input.classList.add('is-invalid');
       feedbackArea.classList.add('text-danger');
