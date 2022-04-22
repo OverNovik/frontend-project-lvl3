@@ -7,6 +7,7 @@ import getXml from './getXml.js';
 const app = () => {
   const state = {
     form: {
+      status: '',
       stateForm: '',
       error: '',
       feedback: [],
@@ -49,6 +50,7 @@ const app = () => {
 
     yupValid(urlData, i18nextInstance, state)
       .then(() => {
+        watchedState.form.status = 'load';
         if (state.feeds.includes(urlData)) {
           throw new Error(i18nextInstance.t('feedback.repeat'));
         } else {

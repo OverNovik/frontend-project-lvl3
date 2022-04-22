@@ -11,13 +11,15 @@ const getXml = (watchedState, url, state, i18n) => {
       setTimeout(() => {
         getXml(watchedState, url, state, i18n);
       }, 5000);
+      watchedState.form.status = 'success';
     })
     .catch((error) => {
       if (error.message === 'Network Error') {
         watchedState.form.feedback = i18n.t('feedback.networkError');
-      } else {
-        watchedState.form.feedback = error.message;
+        return;
       }
+      watchedState.form.feedback = error.message;
+      watchedState.form.status = 'success';
     });
 };
 
