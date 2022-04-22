@@ -6,7 +6,7 @@ import updateTracking from './updateTracking.js';
 const getXml = (watchedState, url, state, i18n) => {
   axios.get(getLink(url))
     .then((response) => {
-      const parseData = parser(response.data, i18n);
+      const parseData = parser(response.data, i18n, watchedState);
       updateTracking(state, watchedState, parseData);
       setTimeout(() => {
         getXml(watchedState, url, state, i18n);

@@ -1,9 +1,11 @@
 import _ from 'lodash';
 
-export default (doc, i18n) => {
+export default (doc, i18n, watchedState) => {
   const feedId = _.uniqueId();
   const parsererror = doc.querySelector('parsererror');
   if (parsererror) {
+    watchedState.form.stateForm = 'parserError';
+    watchedState.form.feedback = i18n.t('feedback.parserError');
     throw new Error(i18n.t('feedback.parserError'));
   }
 
