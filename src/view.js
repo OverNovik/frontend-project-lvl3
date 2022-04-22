@@ -10,23 +10,26 @@ export default (i18n, form, input, feedbackArea) => {
       input.classList.remove('is-invalid');
       feedbackArea.classList.remove('text-danger');
       feedbackArea.classList.add('text-success');
+      feedbackArea.textContent = i18n.t('feedback.valid');
       renderFeeds(value, i18n);
     } else if (path === 'posts') {
-      input.classList.remove('is-invalid');
-      feedbackArea.classList.remove('text-danger');
-      feedbackArea.classList.add('text-success');
       renderPosts(value, i18n);
-    } else if (path === 'form.error') {
+    } else if (value === 'repeat') {
       feedbackArea.classList.remove('text-success');
       input.classList.add('is-invalid');
       feedbackArea.classList.add('text-danger');
-      feedbackArea.textContent = value;
+      feedbackArea.textContent = i18n.t('feedback.repeat');
     } else if (path === 'form.stateForm' && value === 'load') {
       input.setAttribute('readonly', 'readonly');
       btn.setAttribute('disabled', true);
     } else if (path === 'form.stateForm' && value === 'success') {
       input.removeAttribute('readonly');
       btn.setAttribute('disabled', false);
+    } else if (path === 'form.error') {
+      feedbackArea.classList.remove('text-success');
+      input.classList.add('is-invalid');
+      feedbackArea.classList.add('text-danger');
+      feedbackArea.textContent = value;
     }
 
     form.parentNode.append(feedbackArea);

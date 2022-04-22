@@ -39,7 +39,7 @@ const app = () => {
   const input = form.querySelector('#url-input');
   const feedbackArea = document.querySelector('.feedback');
 
-  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea));
+  const watchedState = onChange(state, view(i18nextInstance, form, input, feedbackArea, state));
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
