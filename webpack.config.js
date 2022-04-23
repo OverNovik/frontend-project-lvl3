@@ -2,7 +2,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { fileURLToPath } from 'url';
-
+/* eslint no-underscore-dangle: 0 */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.resolve(__filename);
 
